@@ -100,49 +100,51 @@ def enableplugin():
             input("Press Enter to continue...")
             clear()
     else:
-        pluginID = input('Enter your choice: ')
-        if pluginID == "all":
+        pluginID = input('Enter your choice: ').split(",")
+        if ''.join(pluginID) == "all":
             clear()
             print (" ")
             for offID in range (len(modsoff_list)):
                 mod = modsoff_list[offID-1]
                 base = os.path.splitext(mod)[0]
                 os.rename(mod, base + '.dll')
-                print(modsoff_list[offID-1], "- Plugin enabled\n")
+                print(modsoff_list[offID-1], "- Plugin enabled")
+            print(" ")
             input("Press Enter to continue...")
             clear()
             return()
         else:            
             try:
-                intpluginID = int(pluginID)
-                if ((intpluginID) > len(modsoff_list)):
+                intpluginID = [int(pluginID) for pluginID in pluginID]
+                if ((max(intpluginID)) > len(modsoff_list)):
                     clear()
                     print (" ")
-                    print('Wrong input. Please enter "all" to enable all plugins, or a number from 1 to',(len(modsoff_list)),"\n")
+                    print('Wrong input. Please enter "all" to enable all plugins, or a comma-separated numbers from 1 to',(len(modsoff_list)),"\n")
                     input("Press Enter to continue...")
                     clear()
                     return()
-                elif((intpluginID) == 0):
+                elif((min(intpluginID)) == 0):
                     clear()
                     print (" ")
-                    print('Wrong input. Please enter "all" to enable all plugins, or a number from 1 to',(len(modsoff_list)),"\n")
+                    print('Wrong input. Please enter "all" to enable all plugins, or a comma-separated numbers from 1 to',(len(modsoff_list)),"\n")
                     input("Press Enter to continue...")
                     clear()
                     return()
                 else:
-                    mod = modsoff_list[intpluginID-1]
-                    base = os.path.splitext(mod)[0]
-                    os.rename(mod, base + '.dll')
                     clear()
-                    print (" ")
-                    print(modsoff_list[intpluginID-1], "- Plugin enabled\n")
+                    for ID in intpluginID:
+                        mod = modsoff_list[ID-1]
+                        base = os.path.splitext(mod)[0]
+                        os.rename(mod, base + '.dll')
+                        print(modsoff_list[ID-1], "- Plugin enabled")
+                    print(" ")
                     input("Press Enter to continue...")
                     clear()
                     return()
             except:
                 clear()
                 print (" ")
-                print('Wrong input. Please enter a number or "all"!\n')
+                print('Wrong input. Please enter a comma-separated numbers or "all"!\n')
                 input("Press Enter to continue...")
                 clear()
                 return()
@@ -158,49 +160,51 @@ def disableplugin():
             input("Press Enter to continue...")
             clear()
     else:
-        pluginID = input('Enter your choice: ')
-        if pluginID == "all":
+        pluginID = input('Enter your choice: ').split(",")
+        if ''.join(pluginID) == "all":
             clear()
             print (" ")
-            for onID in range (len(modson_list)):
-                mod = modson_list[onID-1]
+            for offID in range (len(modson_list)):
+                mod = modson_list[offID-1]
                 base = os.path.splitext(mod)[0]
                 os.rename(mod, base + '.disable')
-                print(modson_list[onID-1], "- Plugin disabled\n")
+                print(modson_list[offID-1], "- Plugin disabled")
+            print(" ")
             input("Press Enter to continue...")
             clear()
             return()
         else:            
             try:
-                intpluginID = int(pluginID)
-                if ((intpluginID) > len(modson_list)):
+                intpluginID = [int(pluginID) for pluginID in pluginID]
+                if ((max(intpluginID)) > len(modson_list)):
                     clear()
                     print (" ")
-                    print('Wrong input. Please enter "all" to enable all plugins, or a number from 1 to',(len(modson_list)),"\n")
+                    print('Wrong input. Please enter "all" to enable all plugins, or a comma-separated numbers from 1 to',(len(modson_list)),"\n")
                     input("Press Enter to continue...")
                     clear()
                     return()
-                elif((intpluginID) == 0):
+                elif((min(intpluginID)) == 0):
                     clear()
                     print (" ")
-                    print('Wrong input. Please enter "all" to enable all plugins, or a number from 1 to',(len(modson_list)),"\n")
+                    print('Wrong input. Please enter "all" to enable all plugins, or a comma-separated numbers from 1 to',(len(modson_list)),"\n")
                     input("Press Enter to continue...")
                     clear()
                     return()
                 else:
-                    mod = modson_list[intpluginID-1]
-                    base = os.path.splitext(mod)[0]
-                    os.rename(mod, base + '.disable')
                     clear()
-                    print (" ")
-                    print(modson_list[intpluginID-1], "- Plugin disabled\n")
+                    for ID in intpluginID:
+                        mod = modson_list[ID-1]
+                        base = os.path.splitext(mod)[0]
+                        os.rename(mod, base + '.disable')
+                        print(modson_list[ID-1], "- Plugin disabled")
+                    print(" ")
                     input("Press Enter to continue...")
                     clear()
                     return()
             except:
                 clear()
                 print (" ")
-                print('Wrong input. Please enter a number or "all"!\n')
+                print('Wrong input. Please enter a comma-separated numbers or "all"!\n')
                 input("Press Enter to continue...")
                 clear()
                 return()
